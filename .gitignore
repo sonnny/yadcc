@@ -1,0 +1,13 @@
+floco/analysis_options.yaml
+floco/android/
+floco/build/
+floco/floco.iml
+floco/ios/
+floco/linux/
+floco/macos/
+floco/pubspec.lock
+floco/web/
+floco/windows/
+floco/.flutter-plugins-dependencies
+floco/.metadata
+
