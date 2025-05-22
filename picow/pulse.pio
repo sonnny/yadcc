@@ -1,0 +1,41 @@
+;
+; pulse.pio
+; 
+
+.program pulse
+
+.wrap_target
+loop:
+  set pins, 1 [20]
+  out x, 1
+  jmp !x do_zero
+  set pins, 0 [21]
+  jmp loop
+do_zero:
+  nop [16]
+  set pins, 0 [30]
+  nop [8]  
+.wrap
+
+% c-sdk {
+static inline void pulse_program_init(uint offset, uint pin){
+  pio_gpio_init(pio0, pin);
+  pio_sm_set_consecutive_pindirs(pio0, 0, pin, 1, true);
+  pio_sm_config c = pulse_program_get_default_config(offset);
+  sm_config_set_set_pins(&c, pin, 1);
+  sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+  float div = clock_get_hz(clk_sys) / 400000.0;
+  sm_config_set_clkdiv(&c, div);
+  sm_config_set_out_shift(&c, false, true, 8);
+  pio_sm_init(pio0, 0, offset, &c);
+  pio_sm_set_enabled(pio0, 0, true);}
+
+static inline void pulse_put(uint8_t data){
+  while(pio_sm_is_tx_fifo_full(pio0, 0)) ;
+  *(volatile uint8_t*)&pio0->txf[0] = data;}
+
+static inline void pulse_wait_idle(){
+  uint32_t sm_stall_mask = 1u << (0 + PIO_FDEBUG_TXSTALL_LSB);
+  pio0->fdebug = sm_stall_mask;
+  while(!(pio0->fdebug & sm_stall_mask)) ;}
+%}
