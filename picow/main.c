@@ -44,7 +44,10 @@ void process_string(char *str){
     direction = (uint8_t) atoi(tokens[3]);
     if (direction) speed += 0x80;}
     
-  else if (strcmp(tokens[0], "fn") == 0){ // is this function command
+  // function group one
+  // 0b100D_DDDD
+  // 0b100 F0____F4_F3_F2_F1
+  else if (strcmp(tokens[0], "fn") == 0){ 
 	new_function = true; 
     function_address = (uint8_t) atoi(tokens[1]);
     function = (uint8_t) atoi(tokens[2]);}

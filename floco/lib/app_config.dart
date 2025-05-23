@@ -13,9 +13,8 @@ class Device {
   
 final List<Device> devices = [
   Device(label: 'pick picow label', id: '28:CD:C1:08:28:9F', service: 'FF10', characteristic: 'FF11'),
- //  Device(label: 'A3 dcc tester', id: '28:CD:C1:01:54:E7', service: 'FF10', characteristic: 'FF11'),
-  Device(label: 'A1',              id: '28:CD:C1:08:28:9F', service: 'FF10', characteristic: 'FF11'),
-  Device(label: 'A3 dcc tester', id: '28:CD:C1:01:54:E7', service: 'FF10', characteristic: 'FF11'),
+  Device(label: 'A1 arduboard',     id: '28:CD:C1:08:28:9F', service: 'FF10', characteristic: 'FF11'),
+  Device(label: 'A3 dcc tester',    id: '28:CD:C1:01:54:E7', service: 'FF10', characteristic: 'FF11'),
 ]; 
   
 TextStyle purple26 = TextStyle(color: Colors.purple, fontSize: 26.0, fontWeight: FontWeight.bold);

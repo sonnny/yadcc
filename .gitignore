@@ -11,4 +11,6 @@ floco/windows/
 floco/.flutter-plugins-dependencies
 floco/.metadata
 picow/build/
+custom_gatt_server/build/
+
 
