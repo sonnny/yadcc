@@ -1,4 +1,6 @@
-
+//
+// use gedit with preferences / font & colors / cobalt blue based
+//
 
 //standard lib
 #include <stdio.h>
